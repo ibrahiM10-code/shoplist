@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Outfit", sans-serif;
+}
+
+body {
+    background-color: rgba(0, 0, 0, 0.922);
+}
+
+.home-container {
+    margin-top: 200px;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 30px;
+    color: white;
+}
+
+.home-container button {
+    border: none;
+    background: transparent;
+    color: rgb(6, 189, 30);
+    font-size: 45px;
+    border-radius: 5px;
+}
+
+.shoplist-wrapper {
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 40px 0;
+    display: flex;
+    padding: 15px 90px;
+    position: relative;
+}
+
+.shoplist-wrapper button {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    padding: 5px 10px;
+}
+
+.shoplist-link {
+    position: relative;
+    right: 50px;
+    text-decoration: none;
+    color: white;
+}
+
+.new-shoplist-form-container {
+    margin-top: 110px;
+    border: 1px solid whitesmoke;
+    border-radius: 10px;
+    padding: 20px;
+    width: 70%;
+    color: whitesmoke;
+}
+
+.new-shoplist-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-shoplist-form input {
+    margin: 5px 0 20px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.new-shoplist-form button {
+    margin: 10px 0 10px 0;
+    border: none;
+    padding: 10px 0;
+    border-radius: 10px;
+    background-color: green;
+    color: white;
+    transition: .5s;
+}
+
+.new-shoplist-form button:hover {
+    background-color: rgb(0, 151, 58);
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+th:nth-child(1), th:nth-child(2) {
+    width: 20%;
+}
+
+th:nth-child(3) {
+    width: 25%;
+}
+
+td:nth-child(4) {
+    font-weight: 500;
+}
+
+td > input {
+    width: 60%;
+    border-radius: 3px;
+    border: 1px solid black;
+    padding-left: 5px;
+}
+
+.shoplist-content-container {
+    margin-top: 200px;
+    color: whitesmoke;
+}
+
+.remove-product-btn {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 5px 10px;
+}
+
+.bottom-content {
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+
+.bottom-content > button {
+    border: none;
+    padding: 8px 10px;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    transition: .5;
+}
+
+.bottom-content > button:hover {
+    background-color: rgb(0, 151, 58);
+}
