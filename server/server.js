@@ -17,20 +17,16 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cors({
-    origin: ["https://shoplist-client-side.vercel.app/"],
+    origin: ["https://shoplist-client-side.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"]
 }));
-/* {
-    origin: ["https://shoplist-client-side.vercel.app/"],
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}
-*/
+
 app.use("/api", router);
 
 async function connectDB() {
     try {
         mongoose.connection.on('connected', () => console.log('Successfull DB connection!'));
-        await mongoose.connect(MONGODB_HOST);
+        await mongoose.connect(MONGODB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
     } catch (error) {
         console.error(error);
     }
@@ -38,4 +34,4 @@ async function connectDB() {
 
 connectDB();
 
-// app.listen(3001, () => console.log("Server running on port", 3001));
+app.listen(3001, () => console.log("Server running on port", 3001));
