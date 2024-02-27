@@ -77,7 +77,7 @@ function ShopList() {
             const totals = productTotal;
             const shoplistTotal = totals.reduce((acc, curr) => acc + curr, 0);
             const data = { quantity: shoplistData.quantity, price: shoplistData.price, subTotal: shoplistTotal }
-            const response = await axios.put("http://localhost:3001/api/update-shoplist/" + shoplistData._id, data);
+            const response = await axios.put(`${APIRENDER}/update-shoplist/${shoplistData._id}`, data);
 
             if (response.status === 200) {
                 console.log(response);
