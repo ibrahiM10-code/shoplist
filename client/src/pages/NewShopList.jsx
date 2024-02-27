@@ -37,7 +37,7 @@ function NewShopList() {
                 return accumulator + currentValue;
             }, 0);
             const data = createShoplistData(shoplistName, productsArray, quantitiesArray, pricesArray, total);
-            const response = await axios.post("https://shoplist-server-side.vercel.app/api/add-shoplist", data);
+            const response = await axios.post("http://localhost:3001/api/add-shoplist", data);
 
             if (response.status === 201) {
                 navigate(`/shoplist/${data.name}`);

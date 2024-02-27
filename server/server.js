@@ -18,9 +18,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(cors({
     origin: ["https://shoplist-client-side.vercel.app/"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
+    methods: ["GET", "POST", "PUT", "DELETE"]
 }));
+/* {
+    origin: ["https://shoplist-client-side.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "DELETE"]
+}
+*/
 app.use("/api", router);
 
 async function connectDB() {
@@ -34,4 +38,4 @@ async function connectDB() {
 
 connectDB();
 
-// app.listen(PORT, () => console.log("Server running on port", PORT));
+// app.listen(3001, () => console.log("Server running on port", 3001));

@@ -11,7 +11,7 @@ function Home() {
     useEffect(() => {
         const getShoplists = async () => {
             try {
-                const response = await fetch("https://shoplist-server-side.vercel.app/api/shoplists");
+                const response = await fetch("http://localhost:3001/api/shoplists");
                 const data = await response.json();
                 if (response.status === 404) {
                     setShoplists([]);
@@ -27,7 +27,8 @@ function Home() {
 
     const deleteShoplist = async (shoplistId) => {
         try {
-            const response = await axios.delete("https://shoplist-server-side.vercel.app/api/delete-shoplist/" + shoplistId);
+            const response = await axios.delete("http://localhost:3001/api/delete-shoplist/" + shoplistId);
+            console.log(response);
             if (response.status === 200) {
                 console.log(response);
                 setShoplists(prevShoplist => {
@@ -35,6 +36,7 @@ function Home() {
                 })
             }
         } catch (error) {
+
             console.error(error.message);
         }
     }
