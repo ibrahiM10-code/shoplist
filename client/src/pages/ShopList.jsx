@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import axios from "axios";
+import { LOCALHOST, APIRENDER } from "../apiUrls";
 
 function ShopList() {
     const [shoplistData, setShoplistData] = useState([]);
@@ -12,7 +13,7 @@ function ShopList() {
     useEffect(() => {
         const loadData = async () => {
             try {
-                const response = await fetch("http://localhost:3001/api/shoplist/" + shoplistName);
+                const response = await fetch(`${APIRENDER}/shoplist/${shoplistName}`);
                 const data = await response.json();
                 setShoplistData(data[0]);
             } catch (error) {
@@ -41,7 +42,7 @@ function ShopList() {
     // Removes a product of a shoplist from the database and the state.
     const removeProduct = async productIndex => {
         try {
-            const response = await axios.put(`http://localhost:3001/api/shoplist/${shoplistName}/${productIndex}`);
+            const response = await axios.put(`${APIRENDER}/shoplist/${shoplistName}/${productIndex}`);
             if (response.status === 200) {
                 console.log(response);
                 setShoplistData((prevData) => {

@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import ProductInput from "../components/ProductInput";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { LOCALHOST, APIRENDER } from "../apiUrls";
 
 function NewShopList() {
     const [shoplistContent, setShoplistContent] = useState([]);
@@ -37,7 +38,7 @@ function NewShopList() {
                 return accumulator + currentValue;
             }, 0);
             const data = createShoplistData(shoplistName, productsArray, quantitiesArray, pricesArray, total);
-            const response = await axios.post("http://localhost:3001/api/add-shoplist", data);
+            const response = await axios.post(`${APIRENDER}/add-shoplist`, data);
 
             if (response.status === 201) {
                 navigate(`/shoplist/${data.name}`);

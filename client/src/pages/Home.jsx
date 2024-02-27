@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoIosAddCircle } from "react-icons/io";
 import axios from "axios";
+import { LOCALHOST, APIRENDER } from "../apiUrls";
 
 function Home() {
     const [shoplists, setShoplists] = useState([]);
@@ -11,7 +12,7 @@ function Home() {
     useEffect(() => {
         const getShoplists = async () => {
             try {
-                const response = await fetch("http://localhost:3001/api/shoplists");
+                const response = await fetch(`${APIRENDER}/shoplists`);
                 const data = await response.json();
                 if (response.status === 404) {
                     setShoplists([]);
@@ -27,7 +28,7 @@ function Home() {
 
     const deleteShoplist = async (shoplistId) => {
         try {
-            const response = await axios.delete("http://localhost:3001/api/delete-shoplist/" + shoplistId);
+            const response = await axios.delete(`${APIRENDER}/delete-shoplist/${shoplistId}`);
             console.log(response);
             if (response.status === 200) {
                 console.log(response);

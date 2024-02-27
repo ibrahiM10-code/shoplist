@@ -8,7 +8,6 @@ import router from "./routes/apiRoutes.js";
 
 dotenv.config({ path: "../.env" });
 
-// const PORT = process.env.PORT;
 const MONGODB_HOST = process.env.MONGODB_HOST;
 
 const app = express();
@@ -23,7 +22,7 @@ app.use("/api", router);
 async function connectDB() {
     try {
         mongoose.connection.on('connected', () => console.log('Successfull DB connection!'));
-        await mongoose.connect(MONGODB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+        await mongoose.connect(MONGODB_HOST);
     } catch (error) {
         console.error(error);
     }
