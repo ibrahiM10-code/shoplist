@@ -8,7 +8,7 @@ import router from "./routes/apiRoutes.js";
 
 dotenv.config({ path: "../.env" });
 
-const PORT = process.env.PORT;
+// const PORT = process.env.PORT;
 const MONGODB_HOST = process.env.MONGODB_HOST;
 
 const app = express();
@@ -34,4 +34,4 @@ async function connectDB() {
 
 connectDB();
 
-app.listen(PORT, () => console.log("Server running on port", PORT));
+// app.listen(PORT, () => console.log("Server running on port", PORT));
