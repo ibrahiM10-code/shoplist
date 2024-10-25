@@ -6,57 +6,73 @@ import axios from "axios";
 import { LOCALHOST, APIRENDER } from "../apiUrls";
 
 function Home() {
-    const [shoplists, setShoplists] = useState([]);
-    const navigate = useNavigate();
+  const [shoplists, setShoplists] = useState([]);
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        const getShoplists = async () => {
-            try {
-                const response = await fetch(`${APIRENDER}/shoplists`);
-                const data = await response.json();
-                if (response.status === 404) {
-                    setShoplists([]);
-                } else {
-                    setShoplists(data);
-                }
-            } catch (error) {
-                console.error(error.message);
-            }
+  useEffect(() => {
+    const getShoplists = async () => {
+      try {
+        const response = await fetch(`${LOCALHOST}/shoplists`);
+        const data = await response.json();
+        if (response.status === 404) {
+          setShoplists([]);
+        } else {
+          setShoplists(data);
         }
-        getShoplists();
-    }, []);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    getShoplists();
+  }, []);
 
-    const deleteShoplist = async (shoplistId) => {
-        try {
-            const response = await axios.delete(`${APIRENDER}/delete-shoplist/${shoplistId}`);
-            console.log(response);
-            if (response.status === 200) {
-                console.log(response);
-                setShoplists(prevShoplist => {
-                    return [...prevShoplist]
-                })
-            }
-        } catch (error) {
-
-            console.error(error.message);
-        }
+  const deleteShoplist = async (shoplistId) => {
+    try {
+      const response = await axios.delete(
+        `${LOCALHOST}/delete-shoplist/${shoplistId}`
+      );
+      console.log(response);
+      if (response.status === 200) {
+        console.log(response);
+        setShoplists([])
+      }
+    } catch (error) {
+      console.error(error.message);
     }
+  };
 
-    return (
-        <div className="container-sm text-center home-container" style={{ width: "60%" }}>
-            <h1>Add shoplist</h1>
-            {shoplists.length === 0 ? "No shoplists in the database yet." : (shoplists.map((shoplist, index) => {
-                return (
-                    <div className="shoplist-wrapper" key={index}>
-                        <Link to={`/shoplist/${shoplist.name}`} className="shoplist-link">{shoplist.name}</Link>
-                        <button className="ms-4" onClick={() => deleteShoplist(shoplist._id)}><FaRegTrashAlt /></button>
-                    </div>
-                )
-            }))}
-            <br />
-            <button onClick={() => navigate("/create-shoplist")}><IoIosAddCircle /></button>
-        </div>
-    );
+  return (
+    <div
+      className="container-sm text-center home-container"
+      style={{ width: "60%" }}
+    >
+      <h1>Add shoplist</h1>
+      {shoplists.length === 0
+        ? "No shoplists in the database yet."
+        : shoplists.map((shoplist, index) => {
+            return (
+              <div className="shoplist-wrapper" key={index}>
+                <Link
+                  to={`/shoplist/${shoplist.name}`}
+                  className="shoplist-link"
+                >
+                  {shoplist.name}
+                </Link>
+                <button
+                  className="ms-4"
+                  onClick={() => deleteShoplist(shoplist._id)}
+                >
+                  <FaRegTrashAlt />
+                </button>
+              </div>
+            );
+          })}
+      <br />
+      <button onClick={() => navigate("/create-shoplist")}>
+        <IoIosAddCircle />
+      </button>
+    </div>
+  );
 }
 
 export default Home;
