@@ -9,6 +9,7 @@ import router from "./routes/apiRoutes.js";
 dotenv.config({ path: "../.env" });
 
 const MONGODB_HOST = process.env.MONGODB_HOST;
+const DB_HOST = process.env.ALTERNATE_HOST;
 
 const app = express();
 
