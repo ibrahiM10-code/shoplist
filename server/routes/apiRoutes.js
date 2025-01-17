@@ -95,27 +95,26 @@ router.put("/shoplist/:name/:index", async (req, res) => {
     const { name: shoplistName, index: arrayIndex } = req.params;
     try {
         const shoplistData = await ShopList.findOne({ name: shoplistName });
-        const updateShoplist = await ShopList.updateOne(
+        const updateSubTotal = await ShopList.updateOne(
             {
                 name: shoplistName
             },
             {
-                $pull: {
-                    products: { $in: [shoplistData.products[arrayIndex]] },
-                    quantity: { $in: [shoplistData.quantity[arrayIndex]] },
-                    price: { $in: [shoplistData.price[arrayIndex]] }
-                }
+                subTotal: req.body.subTotal
             }
-        );
+        )
 
-        if (updateShoplist.modifiedCount > 0) {
-            res.status(200).json(updateShoplist);
-            console.log("The product has been removed and the shoplist updated");
-        } else {
-            res.status(400).json({ message: "There has been an error when trying to save the changes." });
+        if (updateSubTotal.acknowledged) {
+            shoplistData.products.splice(arrayIndex, 1);
+            shoplistData.quantity.splice(arrayIndex, 1);
+            shoplistData.price.splice(arrayIndex, 1);
+            await shoplistData.save();
+            res.status(200).json(updateSubTotal);
+            console.log("The product has been removed and the shoplist updated.");
         }
     } catch (error) {
-
+        console.error(error);
+        res.status(500).json({ message: "Internal server error." });
     }
 });
 
