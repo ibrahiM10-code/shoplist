@@ -41,6 +41,7 @@ function ShopList() {
 
   // Removes a product of a shoplist from the database and the state.
   const removeProduct = async (productIndex) => {
+    console.log(productIndex);
     try {
       const response = await axios.put(
         `${LOCALHOST}/shoplist/${shoplistName}/${productIndex}`
@@ -82,6 +83,7 @@ function ShopList() {
         price: shoplistData.price,
         subTotal: shoplistTotal,
       };
+      console.log(data);
       const response = await axios.put(
         `${LOCALHOST}/update-shoplist/${shoplistData._id}`,
         data

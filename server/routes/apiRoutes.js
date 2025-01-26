@@ -71,13 +71,13 @@ router.put("/update-shoplist/:id", async (req, res) => {
             {
                 _id: req.params.id
             },
-            {
+            {   
+                products: req.body.products === undefined ? shopListData.products : req.body.products,
                 quantity: req.body.quantity === undefined ? shopListData.quantity : req.body.quantity,
                 price: req.body.price === undefined ? shopListData.price : req.body.price,
                 subTotal: req.body.subTotal // update the value with the quantity and price
             }
         );
-        console.log(req.body.subTotal);
         if (shoplistUpdate.acknowledged) {
             res.status(200).json({ shoplistUpdate });
             console.log("This shoplist has been succesfully updated");
